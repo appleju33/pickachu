@@ -1,0 +1,49 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.WhitePickerActivity">
+
+    <FrameLayout
+        android:id="@+id/activity_color_picker_preview_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:background="#808080">
+
+        <View
+            android:id="@+id/activity_color_picker_pointer_ring"
+            android:layout_width="@dimen/activity_color_picker_pointer_ring_size"
+            android:layout_height="@dimen/activity_color_picker_pointer_ring_size"
+            android:layout_gravity="center"
+            android:background="@drawable/pointer_ring" />
+
+        <View
+            android:id="@+id/activity_main_pointer"
+            android:layout_width="@dimen/activity_color_picker_pointer_size"
+            android:layout_height="@dimen/activity_color_picker_pointer_size"
+            android:layout_gravity="center"
+            android:background="@drawable/pointer" />
+
+        <ImageView
+            android:id="@+id/img_view"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="60dp"
+            android:gravity="center"
+            android:src="@drawable/pick1"
+            android:padding="8dp"
+            tools:visibility="visible" />
+
+    </FrameLayout>
+
+    <View
+        android:id="@+id/activity_color_picker_animated_preview"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/activity_color_picker_bottom_bar_height_half"
+        android:background="@drawable/oval_white"
+        android:visibility="invisible" />
+
+</FrameLayout>
