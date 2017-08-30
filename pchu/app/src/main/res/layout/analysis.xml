@@ -57,36 +57,7 @@
                     android:layout_margin="0dp"
                     android:layout_weight="1"
                     android:background="#B67C70"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#A36A5F"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#915B4F"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#7B4A43"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#653D35"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#4E2F2A"/>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -129,36 +100,6 @@
                     android:layout_margin="0dp"
                     android:layout_weight="1"
                     android:background="#B27E69"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#A26D5B"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#8E5D4E"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#784D3D"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#643E31"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#4C3025"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -201,36 +142,7 @@
                     android:layout_margin="0dp"
                     android:layout_weight="1"
                     android:background="#AF8066"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#9D6F55"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#8A6145"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#754F38"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#61402D"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#4B3124"/>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -273,36 +185,6 @@
                     android:layout_margin="0dp"
                     android:layout_weight="1"
                     android:background="#AA8163"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#9A7153"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#876043"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#755036"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#5D412B"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#483322"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -345,36 +227,6 @@
                     android:layout_margin="0dp"
                     android:layout_weight="1"
                     android:background="#A78361"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#95714F"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#836241"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#715233"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#5C4229"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#463420"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -417,36 +269,6 @@
                     android:layout_margin="0dp"
                     android:layout_weight="1"
                     android:background="#A5855E"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#91744C"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#7E643F"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#6D5533"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#554125"/>
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="70dp"
-                    android:layout_margin="0dp"
-                    android:layout_weight="1"
-                    android:background="#453420"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
