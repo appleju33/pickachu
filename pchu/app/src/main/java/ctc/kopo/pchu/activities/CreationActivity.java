@@ -1,7 +1,6 @@
 package ctc.kopo.pchu.activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -45,39 +44,14 @@ public class CreationActivity extends AppCompatActivity{
 
         //화이트밸런스를 위한 하얀 종이 rgb의 hex값
         Intent intent = getIntent();
-        String whitebalance = intent.getExtras().getString("whitebalance").replace("#","");
+        String whitebalance = intent.getExtras().getString("whitebalance");
+        intent.putExtra("whitebalance",whitebalance);
         Toast.makeText(this, whitebalance, Toast.LENGTH_LONG).show();
-
-        //보정값 계산
-        int corRed = 255-Integer.parseInt(whitebalance.substring(0,2),16);
-        int corGreen = 255-Integer.parseInt(whitebalance.substring(2,4),16);
-        int corBlue = 255-Integer.parseInt(whitebalance.substring(4,6),16);
 
         //피부색 저장
         savedColorsItems = ColorItems.getSavedColorItems(this);
 
         //내일 이거 계산 메소드 만들기
-        for(int i = 0; i<savedColorsItems.size();i++){
-            String skinColor = savedColorsItems.get(i).getHexString().replace("#","");
-            int red = Integer.parseInt(skinColor.substring(0,2),16);
-            int green = Integer.parseInt(skinColor.substring(2,4),16);
-            int blue = Integer.parseInt(skinColor.substring(4,6),16);
-
-            red = red + corRed;
-            if(red>255){
-                red=255;
-            }
-            green = green + corGreen;
-            if(green>255){
-                green=255;
-            }
-            blue = blue + corBlue;
-            if(blue>255){
-                blue=255;
-            }
-            String realHex = rgbToHex(red,green,blue);
-            savedColorsItems.get(i).setColor(Color.parseColor(realHex));
-        }
 //        String a = savedColorsItems.get(0).getHexString();
 //        int inputColor = Color.parseColor(whitebalance);
 //        savedColorsItems.get(0).setColor(inputColor);
@@ -97,18 +71,6 @@ public class CreationActivity extends AppCompatActivity{
             finish();
         }
 
-    }
-
-    public static String rgbToHex(int r, int g, int b)
-    {
-        int Hex = r << 16 ^ g << 8 ^ b;
-        return "#" + lpad(Integer.toHexString(Hex));
-    }
-    public static String lpad(String lpadstr){
-        for(int i=lpadstr.length();i<6;i++){
-            lpadstr="0"+lpadstr;
-        }
-        return lpadstr;
     }
     public Palette make(String name) {
         return new Palette(name, savedColorsItems);

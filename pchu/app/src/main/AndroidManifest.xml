@@ -13,13 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/RedTheme">
         <activity android:name=".activities.MainActivity">
-            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+        </activity>
 
+        <activity
+            android:name=".activities.SplashActivity"
+            android:screenOrientation="portrait">
+            <intent-filter> <!--intent-filter가 첫화면임을 정해주는 태그이다.-->
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".activities.Condition1Activity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".activities.Condition2Activity"
