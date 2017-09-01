@@ -1,31 +1,19 @@
 package ctc.kopo.pchu.activities;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Rect;
 import android.hardware.Camera;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.List;
@@ -146,6 +134,8 @@ public class WhitePickerActivity extends AppCompatActivity implements CameraColo
         Intent intent = getIntent();
         if (intent != null)
             action = intent.getAction();
+
+        showDialog(1);
     }
 
     @Override
@@ -154,6 +144,26 @@ public class WhitePickerActivity extends AppCompatActivity implements CameraColo
         // Setup the camera asynchronously.
         mCameraAsyncTask = new CameraAsyncTask();
         mCameraAsyncTask.execute();
+
+
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        final String [] items = {"백열등", "형광등", "자연광"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(WhitePickerActivity.this);
+        builder.setTitle("조명 선택");
+        builder.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Auto-generated method stub
+                Toast.makeText(WhitePickerActivity.this, items[which], Toast.LENGTH_SHORT).show();
+                dialog.dismiss(); // 누르면 바로 닫히는 형태
+            }
+        });
+        return builder.create();
     }
 
     @Override
