@@ -26,14 +26,29 @@
                 android:scaleType="centerCrop"
                 android:paddingTop="20dp"/>
         </FrameLayout>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/view_palette_list_page_list_view"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
-            tools:listitem="@layout/row_palette" />
+            android:layout_weight="2">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/view_palette_list_page_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/row_palette" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/menual"
+                    android:src="@drawable/know_click"/>
+            </LinearLayout>
+        </FrameLayout>
     </LinearLayout>
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -79,5 +94,5 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"/>
     </LinearLayout>
-    </LinearLayout>
+    </LinearLayout>-->
 </merge>
