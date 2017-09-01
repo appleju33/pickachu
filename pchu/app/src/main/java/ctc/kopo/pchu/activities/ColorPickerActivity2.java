@@ -17,16 +17,17 @@ import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -475,11 +476,26 @@ public class ColorPickerActivity2 extends AppCompatActivity implements CameraCol
         if (count==4){
             AlertDialog.Builder editdialog = new AlertDialog.Builder(this,R.style.AlertTheme);
 
+
             editdialog.setCancelable(false);
-            editdialog.setMessage("피부톤 이름을 입력해주세요");
+            editdialog.setMessage("피부톤 이름을 정해주세요.");
+            final EditText name = new EditText(this);
+            name.setTextColor(Color.parseColor("#000000"));
+            name.setSingleLine(true);
+            name.setGravity(0x11);
+            name.setBackgroundResource(R.drawable.underline);
+
+            InputFilter[] FilterArray = new InputFilter[1];
+            FilterArray[0] = new InputFilter.LengthFilter(4);
+            name.setFilters(FilterArray);
+
+            editdialog.setView(name);
+
             editdialog.setPositiveButton(getString(R.string.ok),
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
+                            String skinName = name.getText().toString();
+                            intentc.putExtra("skinname",skinName);
                             startActivity(intentc);
                             finish();
                         }

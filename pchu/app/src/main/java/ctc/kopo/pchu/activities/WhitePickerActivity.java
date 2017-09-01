@@ -231,7 +231,7 @@ public class WhitePickerActivity extends AppCompatActivity implements CameraColo
             alertdialog.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    finish();
+                    //finish();
                 }
             });
             AlertDialog alert = alertdialog.create();

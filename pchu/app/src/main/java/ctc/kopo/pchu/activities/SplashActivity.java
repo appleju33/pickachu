@@ -1,26 +1,13 @@
 package ctc.kopo.pchu.activities;
 
-/**
- * Created by groupb on 2017-08-28.
- */
-
-import android.app.Activity;
-import android.content.Intent;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
 import android.widget.ImageView;
 
 import ctc.kopo.pchu.R;
 
-import static java.lang.Thread.sleep;
-
-/**
- * Created by 13 on 2016-09-06.
- */
 public class SplashActivity extends Activity {
 
     private final int SPLASH_DISPLAY_LENGTH = 1000;
@@ -34,8 +21,6 @@ public class SplashActivity extends Activity {
             @Override
             public void run() {
                 eyeChange.setImageResource(R.drawable.splash2);
-
-
                 new Handler().postDelayed(new Runnable(){
                     @Override
                     public void run() {

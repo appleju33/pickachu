@@ -177,7 +177,6 @@ public class PaletteListPage extends FrameLayout implements PaletteListWrapper.P
         //ViewPager에 Adapter 설정
         pager.setAdapter(menualadapter);
 
-
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onChanged() {

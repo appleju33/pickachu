@@ -39,13 +39,14 @@ public class CreationActivity extends AppCompatActivity{
         //오늘 날짜로 피부색이름 지정
         long now = System.currentTimeMillis();
         Date date = new Date(now);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
         String getTime = sdf.format(date);
 
         //화이트밸런스를 위한 하얀 종이 rgb의 hex값
         Intent intent = getIntent();
         String whitebalance = intent.getExtras().getString("whitebalance");
-        intent.putExtra("whitebalance",whitebalance);
+        String skinName = intent.getExtras().getString("skinname");
+        //intent.putExtra("whitebalance",whitebalance);
         Toast.makeText(this, whitebalance, Toast.LENGTH_LONG).show();
 
         //피부색 저장
@@ -56,7 +57,7 @@ public class CreationActivity extends AppCompatActivity{
 //        int inputColor = Color.parseColor(whitebalance);
 //        savedColorsItems.get(0).setColor(inputColor);
 
-        Palette newPalette = make(getTime);
+        Palette newPalette = make("["+skinName+"] "+getTime);
 
         SkinDB task = new SkinDB();
 
