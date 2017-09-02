@@ -154,8 +154,9 @@ public class WhitePickerActivity extends AppCompatActivity implements CameraColo
         final String [] items = {"백열등", "형광등", "자연광"};
         AlertDialog.Builder builder = new AlertDialog.Builder(WhitePickerActivity.this);
         builder.setTitle("조명 선택");
-        builder.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+        builder.setCancelable(false);
 
+        builder.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TODO Auto-generated method stub
