@@ -70,7 +70,7 @@ public class AnalysisActivity extends AppCompatActivity{
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),Condition1Activity.class);
+                Intent intent = new Intent(getApplicationContext(),ConditionActivity.class);
                 intent.putExtra("RGB", standardRGB);
                 startActivity(intent);
             }
@@ -116,7 +116,7 @@ public class AnalysisActivity extends AppCompatActivity{
         LinearLayout Colcontainer = (LinearLayout) RowContainer.getChildAt(personalColorRow);
         ImageView imgv = (ImageView)Colcontainer.getChildAt(personalColorColumn);
         //imgv.getBackground().setColorFilter(Color.parseColor("#000000"), PorterDuff.Mode.SRC_ATOP);
-        imgv.setImageResource(R.drawable.page_not);
+        imgv.setImageResource(R.drawable.star);
 
         return rgb;
     }
@@ -147,7 +147,7 @@ public class AnalysisActivity extends AppCompatActivity{
         int[] coolarr = {R.drawable.cool1,R.drawable.cool2,R.drawable.cool3,R.drawable.cool4,R.drawable.cool5,R.drawable.cool6
                 ,R.drawable.cool7,R.drawable.cool8,R.drawable.cool9,R.drawable.cool10,R.drawable.cool11,R.drawable.cool12};
         int[] neuarr = {R.drawable.neutral1,R.drawable.neutral2,R.drawable.neutral3,R.drawable.neutral4,R.drawable.neutral5,R.drawable.neutral6
-                ,R.drawable.neutral7,R.drawable.neutral8,R.drawable.neutral9,R.drawable.natural10,R.drawable.neutral11,R.drawable.neutral12};
+                ,R.drawable.neutral7,R.drawable.neutral8,R.drawable.neutral9,R.drawable.neutral10,R.drawable.neutral11,R.drawable.neutral12};
         int[] warmarr = {R.drawable.warm1,R.drawable.warm2,R.drawable.warm3,R.drawable.warm4,R.drawable.warm5,R.drawable.warm6
                 ,R.drawable.warm7,R.drawable.warm8,R.drawable.warm9,R.drawable.warm10,R.drawable.warm11,R.drawable.warm12};
 

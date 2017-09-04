@@ -44,7 +44,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/menual"
-                    android:src="@drawable/know_click"/>
+                    android:background="#ffffff"
+                    android:src="@drawable/star"/>
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>

@@ -247,7 +247,7 @@ public class WhitePickerActivity extends AppCompatActivity implements CameraColo
 
             AlertDialog.Builder alertdialog = new AlertDialog.Builder(this,R.style.AlertTheme);
             // 메세지
-            alertdialog.setMessage("얼굴 촬영으로 넘어갑니다.");
+            alertdialog.setMessage("피부색 측정으로 넘어갑니다.");
             alertdialog.setCancelable(false);
             // 확인 버튼 리스너
             alertdialog.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {

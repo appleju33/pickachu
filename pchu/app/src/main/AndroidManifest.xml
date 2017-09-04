@@ -26,6 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.ConditionActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".activities.Condition1Activity"
             android:screenOrientation="portrait"/>
         <activity android:name=".activities.Condition2Activity"
