@@ -63,7 +63,7 @@ public class AnalysisActivity extends AppCompatActivity{
         Intent intent = getIntent();
         skinrgb= intent.getExtras().getString("RGB");
 
-        standardRGB = getRGB(skinrgb);
+        getRGB(skinrgb);
         setCondition();
 
         ImageButton next = (ImageButton) findViewById(R.id.next);
@@ -77,7 +77,7 @@ public class AnalysisActivity extends AppCompatActivity{
         });
     }
 
-    String getRGB(String skinrgb){
+    void getRGB(String skinrgb){
         float shortestSkin = 99999999;
         String rgb = null;
         
@@ -117,8 +117,6 @@ public class AnalysisActivity extends AppCompatActivity{
         ImageView imgv = (ImageView)Colcontainer.getChildAt(personalColorColumn);
         //imgv.getBackground().setColorFilter(Color.parseColor("#000000"), PorterDuff.Mode.SRC_ATOP);
         imgv.setImageResource(R.drawable.star);
-
-        return rgb;
     }
 
     static float getdistance(int r, int g, int b, int c1r, int c1g, int c1b){
@@ -158,6 +156,7 @@ public class AnalysisActivity extends AppCompatActivity{
         if(personalColorRow<2 && personalColorColumn<2){
             lip.setImageResource(R.drawable.lip_cool1);
             condi.setImageResource(R.drawable.txt_cool1);
+            standardRGB = "skin1";
             if(personalColorRow==0 && personalColorColumn==0){
                 skin.setImageResource(coolarr[0]);
             }else if(personalColorRow==0 && personalColorColumn==1){
@@ -170,6 +169,7 @@ public class AnalysisActivity extends AppCompatActivity{
         }else if(personalColorRow<2 && personalColorColumn<4){
             lip.setImageResource(R.drawable.lip_cool2);
             condi.setImageResource(R.drawable.txt_cool2);
+            standardRGB = "skin4";
             if(personalColorRow==0 && personalColorColumn==2){
                 skin.setImageResource(coolarr[4]);
             }else if(personalColorRow==0 && personalColorColumn==3){
@@ -182,6 +182,7 @@ public class AnalysisActivity extends AppCompatActivity{
         }else if(personalColorRow<2 && personalColorColumn<6){
             lip.setImageResource(R.drawable.lip_cool3);
             condi.setImageResource(R.drawable.txt_cool3);
+            standardRGB = "skin7";
             if(personalColorRow==0 && personalColorColumn==4){
                 skin.setImageResource(coolarr[8]);
             }else if(personalColorRow==0 && personalColorColumn==5){
@@ -194,6 +195,7 @@ public class AnalysisActivity extends AppCompatActivity{
         }else if(personalColorRow<4 && personalColorColumn<2){
             lip.setImageResource(R.drawable.lip_neu1);
             condi.setImageResource(R.drawable.txt_neu1);
+            standardRGB = "skin2";
             if(personalColorRow==2 && personalColorColumn==0){
                 skin.setImageResource(neuarr[0]);
             }else if(personalColorRow==2 && personalColorColumn==1){
@@ -206,6 +208,7 @@ public class AnalysisActivity extends AppCompatActivity{
         }else if(personalColorRow<4 && personalColorColumn<4){
             lip.setImageResource(R.drawable.lip_neu2);
             condi.setImageResource(R.drawable.txt_neu2);
+            standardRGB = "skin5";
             if(personalColorRow==2 && personalColorColumn==2){
                 skin.setImageResource(neuarr[4]);
             }else if(personalColorRow==2 && personalColorColumn==3){
@@ -218,6 +221,7 @@ public class AnalysisActivity extends AppCompatActivity{
         }else if(personalColorRow<4 && personalColorColumn<6){
             lip.setImageResource(R.drawable.lip_neu3);
             condi.setImageResource(R.drawable.txt_neu3);
+            standardRGB = "skin8";
             if(personalColorRow==2 && personalColorColumn==4){
                 skin.setImageResource(neuarr[8]);
             }else if(personalColorRow==2 && personalColorColumn==5){
@@ -230,6 +234,7 @@ public class AnalysisActivity extends AppCompatActivity{
         }else if(personalColorRow<6 && personalColorColumn<2){
             lip.setImageResource(R.drawable.lip_warm1);
             condi.setImageResource(R.drawable.txt_warm1);
+            standardRGB = "skin3";
             if(personalColorRow==4 && personalColorColumn==0){
                 skin.setImageResource(warmarr[0]);
             }else if(personalColorRow==4 && personalColorColumn==1){
@@ -242,6 +247,7 @@ public class AnalysisActivity extends AppCompatActivity{
         }else if(personalColorRow<6 && personalColorColumn<4){
             lip.setImageResource(R.drawable.lip_warm2);
             condi.setImageResource(R.drawable.txt_warm2);
+            standardRGB = "skin6";
             if(personalColorRow==4 && personalColorColumn==2){
                 skin.setImageResource(warmarr[4]);
             }else if(personalColorRow==4 && personalColorColumn==3){
@@ -254,6 +260,7 @@ public class AnalysisActivity extends AppCompatActivity{
         }else if(personalColorRow<6 && personalColorColumn<6){
             lip.setImageResource(R.drawable.lip_warm3);
             condi.setImageResource(R.drawable.txt_warm3);
+            standardRGB = "skin9";
             if(personalColorRow==4 && personalColorColumn==4){
                 skin.setImageResource(warmarr[8]);
             }else if(personalColorRow==4 && personalColorColumn==5){

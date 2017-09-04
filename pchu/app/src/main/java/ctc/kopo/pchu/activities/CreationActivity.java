@@ -47,8 +47,22 @@ public class CreationActivity extends AppCompatActivity{
         Intent intent = getIntent();
         String whitebalance = intent.getExtras().getString("whitebalance").replace("#","");
         String skinName = intent.getExtras().getString("skinname");
+        String lamp = intent.getExtras().getString("lamp");
         //intent.putExtra("whitebalance",whitebalance);
         Toast.makeText(this, whitebalance, Toast.LENGTH_LONG).show();
+
+        int corlampR =0;
+        int corlampG =0;
+        int corlampB =0;
+        if(lamp.equals("백열등")){
+            corlampR =-2;
+            corlampG =1;
+            corlampB =-2;
+        }else if(lamp.equals("백열등")){
+            corlampR =2;
+            corlampG =-1;
+            corlampB =2;
+        }
 
         //보정값 계산
         int corRed = 255-Integer.parseInt(whitebalance.substring(0,2),16);
@@ -65,17 +79,23 @@ public class CreationActivity extends AppCompatActivity{
             int green = Integer.parseInt(skinColor.substring(2,4),16);
             int blue = Integer.parseInt(skinColor.substring(4,6),16);
 
-            red = red + corRed;
+            red = red + corRed + corlampR;
             if(red>255){
                 red=255;
+            }else if(red<0){
+                red=0;
             }
-            green = green + corGreen;
+            green = green + corGreen + corlampG;
             if(green>255){
                 green=255;
+            }else if(green<0){
+                green=0;
             }
-            blue = blue + corBlue;
+            blue = blue + corBlue + corlampB;
             if(blue>255){
                 blue=255;
+            }else if(blue<0){
+                blue=0;
             }
             String realHex = rgbToHex(red,green,blue);
             savedColorsItems.get(i).setColor(Color.parseColor(realHex));

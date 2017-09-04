@@ -226,6 +226,8 @@ public class ColorPickerActivity2 extends AppCompatActivity implements CameraCol
 
         String whitebalance = intent.getExtras().getString("whitebalance");
         intentc.putExtra("whitebalance",whitebalance);
+        String lamp = intent.getExtras().getString("lamp");
+        intentc.putExtra("lamp",lamp);
 
         //mFab.setTranslationY(200);
         mFab.hide();

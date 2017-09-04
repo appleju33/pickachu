@@ -171,6 +171,7 @@ public class WhitePickerActivity extends AppCompatActivity implements CameraColo
             public void onClick(DialogInterface dialog, int which) {
                 // TODO Auto-generated method stub
                 Toast.makeText(WhitePickerActivity.this, items[which], Toast.LENGTH_SHORT).show();
+                intent.putExtra("lamp",items[which]);
                 dialog.dismiss(); // 누르면 바로 닫히는 형태
             }
         });

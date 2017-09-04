@@ -39,7 +39,6 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import ctc.kopo.pchu.R;
-import ctc.kopo.pchu.adapter.ResultListViewAdapter;
 import ctc.kopo.pchu.views.JsonItem;
 
 /**
@@ -47,8 +46,7 @@ import ctc.kopo.pchu.views.JsonItem;
  */
 
 public class ResultActivity extends AppCompatActivity{
-    
-    ResultListViewAdapter adapter;
+
     String color = null;
     String mood  = null;
     String colorType = null;

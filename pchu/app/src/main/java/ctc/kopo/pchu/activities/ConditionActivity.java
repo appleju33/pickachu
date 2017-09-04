@@ -20,7 +20,6 @@ import ctc.kopo.pchu.R;
 public class ConditionActivity extends AppCompatActivity {
 
     String mood = null;
-    String color = null;
     String skinrgb = null;
 
     ImageButton con1;
