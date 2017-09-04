@@ -17,7 +17,7 @@ import ctc.kopo.pchu.R;
 
 public class ViewPagerAdapter extends PagerAdapter{
     Context context;
-    int[] imageId = {R.drawable.menual1, R.drawable.menual2, R.drawable.menual3, R.drawable.menual4, R.drawable.menual5};
+    int[] imageId = {R.drawable.menual1, R.drawable.menual2, R.drawable.menual3, R.drawable.menual4, R.drawable.menual5, R.drawable.menual6, R.drawable.menual7, R.drawable.menual8};
 
     public ViewPagerAdapter(Context context){
         this.context = context;

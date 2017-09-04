@@ -14,11 +14,14 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import java.util.List;
 
 import ctc.kopo.pchu.R;
+import ctc.kopo.pchu.adapter.WhiteDialogAdapter;
 import ctc.kopo.pchu.data.ColorItem;
 import ctc.kopo.pchu.data.ColorItems;
 import ctc.kopo.pchu.utils.Cameras;
@@ -31,6 +34,7 @@ import ctc.kopo.pchu.views.CameraColorPickerPreview;
 
 public class WhitePickerActivity extends AppCompatActivity implements CameraColorPickerPreview.OnColorSelectedListener, View.OnClickListener {
     Intent intent;
+    ImageView tv = null;
     /**
      * A tag used in the logs.
      */
@@ -151,12 +155,18 @@ public class WhitePickerActivity extends AppCompatActivity implements CameraColo
     @Override
     protected Dialog onCreateDialog(int id) {
         // TODO Auto-generated method stub
-        final String [] items = {"백열등", "형광등", "자연광"};
+        final String [] items = new String[] {"백열등", "형광등", "자연광"};
+        //final int [] icons = new int[] {R.drawable.inclamp,R.drawable.flulamp,R.drawable.sun};
+        WhiteDialogAdapter adapter = new WhiteDialogAdapter();
+        adapter.addItem(R.drawable.inclamp,items[0]);
+        adapter.addItem(R.drawable.flulamp,items[1]);
+        adapter.addItem(R.drawable.sun,items[2]);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(WhitePickerActivity.this);
-        builder.setTitle("조명 선택");
+        //builder.setTitle("조명 선택");
         builder.setCancelable(false);
 
-        builder.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+        builder.setAdapter(adapter,new DialogInterface.OnClickListener(){
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TODO Auto-generated method stub
@@ -164,6 +174,15 @@ public class WhitePickerActivity extends AppCompatActivity implements CameraColo
                 dialog.dismiss(); // 누르면 바로 닫히는 형태
             }
         });
+//
+//        builder.setSingleChoiceItems(items, 0, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                // TODO Auto-generated method stub
+//                Toast.makeText(WhitePickerActivity.this, items[which], Toast.LENGTH_SHORT).show();
+//                dialog.dismiss(); // 누르면 바로 닫히는 형태
+//            }
+//        });
         return builder.create();
     }
 
@@ -271,6 +290,8 @@ public class WhitePickerActivity extends AppCompatActivity implements CameraColo
         mPreviewContainer = (FrameLayout) findViewById(ctc.kopo.pchu.R.id.activity_color_picker_preview_container);
         mPickedColorPreviewAnimated = findViewById(ctc.kopo.pchu.R.id.activity_color_picker_animated_preview);
         mPointerRing = findViewById(ctc.kopo.pchu.R.id.activity_color_picker_pointer_ring);
+        tv = (ImageView)findViewById(R.id.img_view);
+        tv.setImageResource(R.drawable.paper);
     }
 
     /**
