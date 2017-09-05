@@ -147,7 +147,9 @@ public class PaletteListPage extends FrameLayout implements PaletteListWrapper.P
         final FlavorPaletteListWrapper wrapper = FlavorPaletteListWrapper.create(recyclerView, this);
         final PaletteListWrapper.Adapter adapter = wrapper.installRecyclerView();
 
-        final ImageButton menualBtn = (ImageButton) findViewById(R.id.menual);
+        final ImageView mainImg = (ImageView) findViewById(R.id.mainimg);
+        final FrameLayout wink = (FrameLayout) findViewById(R.id.winkimg);
+        final ImageButton menualBtn = (ImageButton) findViewById(R.id.menualbtn);
 
         menualBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,27 +162,6 @@ public class PaletteListPage extends FrameLayout implements PaletteListWrapper.P
         // setup swipe to remove item
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
         itemTouchHelper.attachToRecyclerView(recyclerView);
-
-        final FrameLayout wink = (FrameLayout) findViewById(R.id.winkimg);
-        final int[] thisWink = {0};
-
-        Handler handler;
-        handler = new Handler(){
-            public void handleMessage(Message msg)
-            {
-                super.handleMessage(msg);
-                int[] winks = {R.drawable.main1,R.drawable.main2,R.drawable.main3,R.drawable.main4,R.drawable.main5,R.drawable.main6};
-                final ImageView eyeChange = (ImageView) findViewById(R.id.eyes);
-
-                eyeChange.setImageResource(winks[thisWink[0]]);
-                thisWink[0] = thisWink[0] +1;
-                if(thisWink[0]==6){
-                    thisWink[0]=0;
-                }
-                this.sendEmptyMessageDelayed(0, 1000);
-            }
-        };
-        handler.sendEmptyMessage(0);
 
         /*
         final ViewPager pager = (ViewPager) findViewById(R.id.pager);
@@ -214,7 +195,33 @@ public class PaletteListPage extends FrameLayout implements PaletteListWrapper.P
                 super.onChanged();
 //                pager_layout.setVisibility(adapter.getItemCount() == 0 ? VISIBLE : GONE);
 //                pager.setVisibility(adapter.getItemCount() == 0 ? VISIBLE : GONE);
+                mainImg.setVisibility(adapter.getItemCount() == 0 ? VISIBLE : GONE);
                 menualBtn.setVisibility(adapter.getItemCount() == 0 ? VISIBLE : GONE);
+
+                if(adapter.getItemCount()!=0) {
+                    final int[] thisWink = {0};
+                    wink.setVisibility(GONE);
+                    wink.setVisibility(VISIBLE);
+
+                    Handler handler;
+                    handler = new Handler() {
+                        public void handleMessage(Message msg) {
+                            super.handleMessage(msg);
+                            int[] winks = {R.drawable.main1, R.drawable.main2, R.drawable.main3, R.drawable.main4, R.drawable.main5, R.drawable.main6};
+                            final ImageView eyeChange = (ImageView) findViewById(R.id.eyes);
+
+                            eyeChange.setImageResource(winks[thisWink[0]]);
+                            thisWink[0] = thisWink[0] + 1;
+                            if (thisWink[0] == 6) {
+                                thisWink[0] = 0;
+                            }
+                            this.sendEmptyMessageDelayed(0, 1000);
+                        }
+                    };
+                    handler.sendEmptyMessage(0);
+                }else{
+                    wink.setVisibility(GONE);
+                }
             }
         });
         adapter.setPalettes(Palettes.getSavedColorPalettes(context));

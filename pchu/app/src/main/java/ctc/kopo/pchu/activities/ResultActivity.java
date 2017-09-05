@@ -47,11 +47,11 @@ import ctc.kopo.pchu.views.JsonItem;
 
 public class ResultActivity extends AppCompatActivity{
 
-    String color = null;
-    String mood  = null;
+    //String color = null;
+    int theme  = 0;
     String colorType = null;
     String moodType = null;
-    String skinrgb = null;
+    int skin = 0;
     double distance = 0;
 
     Button tv_color1;
@@ -69,8 +69,18 @@ public class ResultActivity extends AppCompatActivity{
     String setg[] = {"","",""};
     String setb[] = {"","",""};
 
-    String rgb[] = new String[3];
+    int rgb[] = new int[3];
     String condrgb[] = new String[3];
+
+    String[][] recommColor = {{"#d29696","#fa96a5","#ffd2e6","#fa3c2d","#ff6496","#dc8c96","#963c64","#c8000a","#f50087"},
+                            {"#dc968c","#fa8282","#fabebe","#f54b2d","#f0648c","#dca0a0","#911e37","#d71919","#cd5f69"},
+                            {"#d7967d","#fa6e6e","#f5beaa","#ff4619","#f05064","#dc8278","#a41e23","#e63201","#fa695a"},
+                            {"#d2a0a0","#eb96a5","#ffbed2","#f55537","#f06ea0","#dc7882","#a34869","#ab0026","#cd6e96"},
+                            {"#dca096","#eb8282","#faaaaa","#eb5537","#e65f82","#dc8c8c","#a54150","#c31928","#e1a091"},
+                            {"#d7a087","#eb6e6e","#f5aa96","#f57d5f","#eb646e","#dc786e","#b44b4b","#be2301","#fa8c82"},
+                            {"#d2afaf","#dc96a5","#ffaabe","#eb4632","#d22869","#dc646e","#550f41","#a0003c","#fab4dc"},
+                            {"#dcb4aa","#dc8282","#fa9696","#ff733c","#e14173","#dc7878","#821e32","#a51928","#b43232"},
+                            {"#d7aa91","#dc6e6e","#f59682","#ff6423","#f04169","#dc6e64","#6e1428","#a51401","#aa6964"}};
 
     private int cnt = 0;
 
@@ -97,12 +107,17 @@ public class ResultActivity extends AppCompatActivity{
         
         //intent 데이터 받아오기
         Intent intent = getIntent();
-        color= intent.getExtras().getString("color");
-        mood= intent.getExtras().getString("mood");
-        skinrgb = intent.getExtras().getString("RGB");
+        //color= intent.getExtras().getString("color");
+        theme= Integer.parseInt(intent.getExtras().getString("mood").replace("theme",""))-1;
+        skin = Integer.parseInt(intent.getExtras().getString("RGB").replace("skin",""))-1;
 
-        colorType = changeColor(color);
-        moodType = changeMood(mood);
+//        colorType = changeColor(color);
+//        moodType = changeMood(mood);
+        colorType = recommColor[skin][theme];
+        Toast.makeText(this, colorType, Toast.LENGTH_LONG).show();
+
+        changeColor(colorType);
+
 
         colortxt = (TextView) findViewById(R.id.selectedcolor);
         moodtxt = (TextView) findViewById(R.id.selectedmood);
@@ -114,10 +129,10 @@ public class ResultActivity extends AppCompatActivity{
         re_iv2 = (ImageView) findViewById(R.id.result_iv2);
         re_iv3 = (ImageView) findViewById(R.id.result_iv3);
 
-        Toast.makeText(this, skinrgb, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, skinrgb, Toast.LENGTH_LONG).show();
 
-        colortxt.setText(color+"");
-        moodtxt.setText(mood+"");
+//        colortxt.setText(color+"");
+//        moodtxt.setText(mood+"");
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
@@ -315,8 +330,7 @@ public class ResultActivity extends AppCompatActivity{
                 jsonItem.setImg(c.getString("img"));
                 jsonItem.setHex(c.getString("hex"));
                 distance = getdistance(Integer.parseInt(c.getString("r")),Integer.parseInt(c.getString("g")),Integer.parseInt(c.getString("b")),
-                        Integer.parseInt(rgb[0]),Integer.parseInt(rgb[1]),Integer.parseInt(rgb[2]),
-                        Integer.parseInt(condrgb[0]),Integer.parseInt(condrgb[1]),Integer.parseInt(condrgb[2]));
+                        rgb[0],rgb[1],rgb[2]);
                 jsonItem.setDistance(distance);
 
                 if(Pitem.size() > 8) {
@@ -394,105 +408,6 @@ public class ResultActivity extends AppCompatActivity{
     }
 
 
-
-    public String changeColor(String color){
-
-        if(color.equals("nude Beige")){
-            rgb = new String[] {"236", "208", "181"};
-            return "0000001";
-        }else if(color.equals("Peach & Coral")){
-            rgb= new String[]{"236", "104", "91"};
-            return "0000010";
-        }else if(color.equals("Pink Shade")){
-            rgb= new String[]{"209", "48", "118"};
-            return "0000100";
-        }else if(color.equals("Call me Red")){
-            rgb= new String[]{"255", "0", "0"};
-            return "0001000";
-        }else if(color.equals("Orange")){
-            rgb= new String[]{"254", "89", "0"};
-            return "0010000";
-        }else if(color.equals("Violet")){
-            rgb= new String[]{"68", "0", "153"};
-            return "0100000";
-        }else{
-            rgb[0] = Integer.toString((int) (Math.random()*255));
-            rgb[1] = Integer.toString((int) (Math.random()*255));
-            rgb[2] = Integer.toString((int) (Math.random()*255));
-            return "1000000";
-        }
-    }
-
-
-    public String inputColor(String color){
-
-        if(color.equals("Call me Red")){
-            return "red";
-        }else if(color.equals("Peach & Coral")){
-            return "coral";
-        }else if(color.equals("Pink Shade")){
-            return "pink";
-        }else if(color.equals("nude Beige")){
-            return "beige";
-        }else if(color.equals("Violet")){
-            return "purple";
-        }else if(color.equals("Orange")){
-            return "orange";
-        }else{
-            return "-";
-        }
-    }
-
-    public String changeMood(String mood){
-
-        if(mood.equals("분위기")){
-            condrgb= new String[]{"237", "127", "143"};
-            return "000000000001";
-        }else if(mood.equals("강렬")){
-            condrgb= new String[]{"166", "48", "93"};
-            return "000000000010";
-        }else if(mood.equals("우울")){
-            condrgb= new String[]{"168", "48", "75"};
-            return "000000000100";
-        }else if(mood.equals("창백")){
-            condrgb= new String[]{"221", "144", "142"};
-            return "000000001000";
-        }else if(mood.equals("데이트")){
-            condrgb= new String[]{"248", "140", "158"};
-            return "000000010000";
-        }else if(mood.equals("파티")){
-            condrgb= new String[]{"245", "0", "136"};
-            return "000000100000";
-        }else if(mood.equals("스마트")){
-            condrgb= new String[]{"243", "123", "122"};
-            return "000001000000";
-        }else if(mood.equals("청순")){
-            condrgb= new String[]{"229", "148", "182"};
-            return "000010000000";
-        }else if(mood.equals("상큼")){
-            condrgb= new String[]{"255", "61", "0"};
-            return "000100000000";
-        }else if(mood.equals("자연스러움")){
-            condrgb= new String[]{"137", "144", "150"};
-            return "001000000000";
-        }else if(mood.equals("쎈 언니")){
-            condrgb= new String[]{"148", "0", "64"};
-            return "010000000000";
-        }else{
-            condrgb[0] = Integer.toString((int) (Math.random()*255));
-            condrgb[1] = Integer.toString((int) (Math.random()*255));
-            condrgb[2] = Integer.toString((int) (Math.random()*255));
-            return "100000000000";
-        }
-    }
-
-    static float getdistance(int r, int g, int b, int c1r, int c1g, int c1b, int c2r, int c2g, int c2b){
-        float distance;
-        distance = (float) (Math.sqrt(Math.pow(Math.abs(r-c1r),2)+Math.pow(Math.abs(g-c1g),2)+Math.pow(Math.abs(b-c1b),2)) +
-                Math.sqrt(Math.pow(Math.abs(r-c2r),2)+Math.pow(Math.abs(g-c2g),2)+Math.pow(Math.abs(b-c2b),2)));
-        return distance;
-    }
-
     public Bitmap loadBitmap(String urlStr) {
         Bitmap bitmap = null;
         AssetManager mngr = getResources().getAssets();
@@ -505,5 +420,20 @@ public class ResultActivity extends AppCompatActivity{
         }
 
         return bitmap;
+    }
+
+    static float getdistance(int r, int g, int b, int cr, int cg, int cb){
+        float distance;
+        distance = (float) (Math.sqrt(Math.pow(Math.abs(r-cr),2)+Math.pow(Math.abs(g-cg),2)+Math.pow(Math.abs(b-cb),2)));
+        return distance;
+    }
+    public void changeColor(String hexcolor){
+
+        hexcolor = hexcolor.replace("#","");
+        rgb = new int[] {Integer.parseInt(hexcolor.substring(0,2),16),Integer.parseInt(hexcolor.substring(2,4),16),Integer.parseInt(hexcolor.substring(4,6),16)};
+
+        for(int i=0;i<3;i++){
+            Toast.makeText(this, String.valueOf(rgb[i]), Toast.LENGTH_LONG).show();
+        }
     }
 }

@@ -3,52 +3,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <FrameLayout
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:id="@+id/winkimg">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/main_back"
-                android:scaleType="centerCrop"
-                android:paddingTop="20dp"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/main1"
-                android:id="@+id/eyes"
-                android:scaleType="centerCrop"
-                android:paddingTop="20dp"/>
-        </FrameLayout>
-        <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/main"
+                android:id="@+id/mainimg"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2">
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/view_palette_list_page_list_view"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/row_palette" />
-            <LinearLayout
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:id="@+id/winkimg">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/main_back"
+                    android:scaleType="centerCrop"
+                    android:paddingTop="20dp"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/main1"
+                    android:id="@+id/eyes"
+                    android:scaleType="centerCrop"
+                    android:paddingTop="20dp"/>
+                <!--<ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/main"
+                    android:id="@+id/mainimg"
+                    android:scaleType="fitCenter"
+                    android:paddingTop="20dp"/>-->
+            </FrameLayout>
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:layout_height="0dp"
+                android:layout_weight="2">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/view_palette_list_page_list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/row_palette" />
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/menual"
+                    android:id="@+id/menualbtn"
                     android:background="#ffffff"
-                    android:src="@drawable/star"/>
-            </LinearLayout>
-        </FrameLayout>
-    </LinearLayout>
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/select_light"/>
+            </FrameLayout>
+        </LinearLayout>
+    </RelativeLayout>
     <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
