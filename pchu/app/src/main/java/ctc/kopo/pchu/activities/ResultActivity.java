@@ -113,7 +113,11 @@ public class ResultActivity extends AppCompatActivity{
 
 //        colorType = changeColor(color);
 //        moodType = changeMood(mood);
-        colorType = recommColor[skin][theme];
+        if(theme==9){
+            colorType = "#ffffff";
+        }else {
+            colorType = recommColor[skin][theme];
+        }
         Toast.makeText(this, colorType, Toast.LENGTH_LONG).show();
 
         changeColor(colorType);
@@ -430,7 +434,11 @@ public class ResultActivity extends AppCompatActivity{
     public void changeColor(String hexcolor){
 
         hexcolor = hexcolor.replace("#","");
-        rgb = new int[] {Integer.parseInt(hexcolor.substring(0,2),16),Integer.parseInt(hexcolor.substring(2,4),16),Integer.parseInt(hexcolor.substring(4,6),16)};
+        if(hexcolor.equals("ffffff")) {
+            rgb = new int[]{(int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255)};
+        }else {
+            rgb = new int[]{Integer.parseInt(hexcolor.substring(0, 2), 16), Integer.parseInt(hexcolor.substring(2, 4), 16), Integer.parseInt(hexcolor.substring(4, 6), 16)};
+        }
 
         for(int i=0;i<3;i++){
             Toast.makeText(this, String.valueOf(rgb[i]), Toast.LENGTH_LONG).show();
