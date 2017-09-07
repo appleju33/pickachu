@@ -10,18 +10,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/main"
-                android:id="@+id/mainimg"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -48,24 +36,34 @@
                     android:scaleType="fitCenter"
                     android:paddingTop="20dp"/>-->
             </FrameLayout>
-            <FrameLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/view_palette_list_page_list_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="2">
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/view_palette_list_page_list_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    tools:listitem="@layout/row_palette" />
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/menualbtn"
-                    android:background="#ffffff"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/select_light"/>
-            </FrameLayout>
+                android:layout_weight="2"
+                tools:listitem="@layout/row_palette" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true">
+            <ImageView
+                android:layout_width="400dp"
+                android:layout_height="400dp"
+                android:src="@drawable/main"
+                android:id="@+id/mainimg"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter" />
+            <ImageButton
+                android:id="@+id/menualbtn"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:background="#A90208"
+                android:scaleType="fitEnd"
+                android:src="@drawable/howtouse" />
         </LinearLayout>
     </RelativeLayout>
     <!--<LinearLayout

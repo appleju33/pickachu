@@ -30,7 +30,6 @@
             android:gravity="center"
             android:id="@+id/selectedmood"
             android:text="null"/>
-
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

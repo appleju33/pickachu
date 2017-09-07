@@ -3,7 +3,6 @@ package ctc.kopo.pchu.activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -50,7 +49,7 @@ public class ResultActivity extends AppCompatActivity{
     //String color = null;
     int theme  = 0;
     String colorType = null;
-    String moodType = null;
+//    String moodType = null;
     int skin = 0;
     double distance = 0;
 
@@ -118,7 +117,7 @@ public class ResultActivity extends AppCompatActivity{
         }else {
             colorType = recommColor[skin][theme];
         }
-        Toast.makeText(this, colorType, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, colorType, Toast.LENGTH_LONG).show();
 
         changeColor(colorType);
 
@@ -157,7 +156,7 @@ public class ResultActivity extends AppCompatActivity{
                             public void onClick(DialogInterface dialog, int whichButton) {
 
                                 CustomTask task = new CustomTask();
-                                task.execute("1", colorType, moodType, Pitem.get(0).getColorR(), Pitem.get(1).getColorR(), Pitem.get(2).getColorR(), Pitem.get(0).getColorG(), Pitem.get(1).getColorG(), Pitem.get(2).getColorG(), Pitem.get(0).getColorB(), Pitem.get(1).getColorB(), Pitem.get(2).getColorB() , "1");
+                                task.execute(String.valueOf(skin+1), String.valueOf(theme+1), Pitem.get(0).getColorR(), Pitem.get(1).getColorR(), Pitem.get(2).getColorR(), Pitem.get(0).getColorG(), Pitem.get(1).getColorG(), Pitem.get(2).getColorG(), Pitem.get(0).getColorB(), Pitem.get(1).getColorB(), Pitem.get(2).getColorB() , "1");
                                 Toast toast = Toast.makeText(getApplication(),"선택 완료!",Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,300);
                                 toast.show();
@@ -183,7 +182,7 @@ public class ResultActivity extends AppCompatActivity{
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 CustomTask task = new CustomTask();
-                                task.execute("1", colorType, moodType, Pitem.get(1).getColorR(), Pitem.get(0).getColorR(), Pitem.get(2).getColorR(), Pitem.get(1).getColorG(), Pitem.get(0).getColorG(), Pitem.get(2).getColorG(), Pitem.get(1).getColorB(), Pitem.get(0).getColorB(), Pitem.get(2).getColorB() , "1");
+                                task.execute(String.valueOf(skin+1), String.valueOf(theme+1), Pitem.get(1).getColorR(), Pitem.get(0).getColorR(), Pitem.get(2).getColorR(), Pitem.get(1).getColorG(), Pitem.get(0).getColorG(), Pitem.get(2).getColorG(), Pitem.get(1).getColorB(), Pitem.get(0).getColorB(), Pitem.get(2).getColorB() , "1");
                                 Toast toast = Toast.makeText(getApplication(),"선택 완료!",Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,300);
                                 toast.show();
@@ -208,7 +207,7 @@ public class ResultActivity extends AppCompatActivity{
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 CustomTask task = new CustomTask();
-                                task.execute("1", colorType, moodType, Pitem.get(2).getColorR(), Pitem.get(1).getColorR(), Pitem.get(0).getColorR(), Pitem.get(2).getColorG(), Pitem.get(1).getColorG(), Pitem.get(0).getColorG(), Pitem.get(2).getColorB(), Pitem.get(1).getColorB(), Pitem.get(0).getColorB() , "1");
+                                task.execute(String.valueOf(skin+1), String.valueOf(theme+1), Pitem.get(2).getColorR(), Pitem.get(1).getColorR(), Pitem.get(0).getColorR(), Pitem.get(2).getColorG(), Pitem.get(1).getColorG(), Pitem.get(0).getColorG(), Pitem.get(2).getColorB(), Pitem.get(1).getColorB(), Pitem.get(0).getColorB() , "1");
                                 Toast toast = Toast.makeText(getApplication(),"선택 완료!",Toast.LENGTH_LONG);
                                 toast.setGravity(Gravity.CENTER_HORIZONTAL,0,300);
                                 toast.show();
@@ -235,15 +234,20 @@ public class ResultActivity extends AppCompatActivity{
 
                                 if (cnt < 2) {
                                     CustomTask task = new CustomTask();
-                                    task.execute("1", colorType, moodType, Pitem.get(2).getColorR(), Pitem.get(1).getColorR(), Pitem.get(0).getColorR(), Pitem.get(2).getColorG(), Pitem.get(1).getColorG(), Pitem.get(0).getColorG(), Pitem.get(2).getColorB(), Pitem.get(1).getColorB(), Pitem.get(0).getColorB(), "0");
+                                    task.execute(String.valueOf(skin+1), String.valueOf(theme+1), Pitem.get(2).getColorR(), Pitem.get(1).getColorR(), Pitem.get(0).getColorR(), Pitem.get(2).getColorG(), Pitem.get(1).getColorG(), Pitem.get(0).getColorG(), Pitem.get(2).getColorB(), Pitem.get(1).getColorB(), Pitem.get(0).getColorB(), "0");
                                     Pitem.remove(0);
                                     Pitem.remove(1);
                                     Pitem.remove(2);
 
-                                    Bitmap bitmap []= {loadBitmap(Pitem.get(0).getImg()+".jpg"), loadBitmap(Pitem.get(1).getImg()+".jpg"), loadBitmap(Pitem.get(2).getImg()+".jpg")};
-                                    re_iv.setImageBitmap(bitmap[0]);
-                                    re_iv2.setImageBitmap(bitmap[1]);
-                                    re_iv3.setImageBitmap(bitmap[2]);
+                                    //Bitmap bitmap []= {loadBitmap(Pitem.get(0).getImg()+".jpg"), loadBitmap(Pitem.get(1).getImg()+".jpg"), loadBitmap(Pitem.get(2).getImg()+".jpg")};
+                                    try {
+                                        Bitmap bitmap[] = {new back().execute(imgUrl + Pitem.get(0).getImg() + ".jpg").get(), new back().execute(imgUrl + Pitem.get(1).getImg() + ".jpg").get(), new back().execute(imgUrl + Pitem.get(2).getImg() + ".jpg").get()};
+                                        re_iv.setImageBitmap(bitmap[0]);
+                                        re_iv2.setImageBitmap(bitmap[1]);
+                                        re_iv3.setImageBitmap(bitmap[2]);
+                                    }catch (Exception e){
+                                        e.printStackTrace();
+                                    }
 
                                     tv_color1.setText("name: "+Pitem.get(0).getItemname()+"\n price: "+Pitem.get(0).getPrice()+"\n img: "+Pitem.get(0).getImg()+"\n hex: "+Pitem.get(0).getHex()+"\n dis: "+Pitem.get(0).getDistance());
                                     tv_color1.setBackgroundColor(Color.rgb(Integer.parseInt(Pitem.get(0).getColorR()),Integer.parseInt(Pitem.get(0).getColorG()),Integer.parseInt(Pitem.get(0).getColorB())));
@@ -357,7 +361,10 @@ public class ResultActivity extends AppCompatActivity{
                 }
             });
 
-            Bitmap bitmap []= {loadBitmap(Pitem.get(0).getImg()+".jpg"), loadBitmap(Pitem.get(1).getImg()+".jpg"), loadBitmap(Pitem.get(2).getImg()+".jpg")};
+            //Bitmap bitmap []= {loadBitmap(Pitem.get(0).getImg()+".jpg"), loadBitmap(Pitem.get(1).getImg()+".jpg"), loadBitmap(Pitem.get(2).getImg()+".jpg")};
+
+            //Toast.makeText(this, imgUrl + Pitem.get(0).getImg() + ".jpg", Toast.LENGTH_LONG).show();
+            Bitmap bitmap[] = {new back().execute(imgUrl + Pitem.get(0).getImg() + ".jpg").get(), new back().execute(imgUrl + Pitem.get(1).getImg() + ".jpg").get(), new back().execute(imgUrl + Pitem.get(2).getImg() + ".jpg").get()};
             re_iv.setImageBitmap(bitmap[0]);
             re_iv2.setImageBitmap(bitmap[1]);
             re_iv3.setImageBitmap(bitmap[2]);
@@ -371,6 +378,8 @@ public class ResultActivity extends AppCompatActivity{
 
         } catch (JSONException e) {
             e.printStackTrace();
+        } catch (Exception alle){
+            Log.d("에러발생",alle.getMessage());
         }
     }
 
@@ -381,12 +390,12 @@ public class ResultActivity extends AppCompatActivity{
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://iamhpd7.cafe24.com/PickChu/insertDB.jsp?sc="+strings[0]+"&rmd1="+strings[1]+"&rmd2="+strings[2]+"&r1="+strings[3]+"&r2="+strings[4]+"&r3="+strings[5]+"&g1="+strings[6]+"&g2="+strings[7]+"&g3="+strings[8]+"&b1="+strings[9]+"&b2="+strings[10]+"&b3="+strings[11]+"&fb="+strings[12]);
+                URL url = new URL("http://iamhpd7.cafe24.com/PickChu/insertDB.jsp?sc="+strings[0]+"&rmd="+strings[1]+"&r1="+strings[2]+"&r2="+strings[3]+"&r3="+strings[4]+"&g1="+strings[5]+"&g2="+strings[6]+"&g3="+strings[7]+"&b1="+strings[8]+"&b2="+strings[9]+"&b3="+strings[10]+"&fb="+strings[11]);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "sc="+strings[0]+"&rmd1="+strings[1]+"&rmd2="+strings[2]+"&r1="+strings[3]+"&r2="+strings[4]+"&r3="+strings[5]+"&g1="+strings[6]+"&g2="+strings[7]+"&g3="+strings[8]+"&b1="+strings[9]+"&b2="+strings[10]+"&b3="+strings[11]+"&fb="+strings[12];
+                sendMsg = "sc="+strings[0]+"&rmd="+strings[1]+"&r1="+strings[2]+"&r2="+strings[3]+"&r3="+strings[4]+"&g1="+strings[5]+"&g2="+strings[6]+"&g3="+strings[7]+"&b1="+strings[8]+"&b2="+strings[9]+"&b3="+strings[10]+"&fb="+strings[11];
                 osw.write(sendMsg);
                 osw.flush();
                 if (conn.getResponseCode() == conn.HTTP_OK) {
@@ -411,8 +420,37 @@ public class ResultActivity extends AppCompatActivity{
         }
     }
 
+    String imgUrl = "http://iamhpd7.cafe24.com/PickChu/img/";
+    Bitmap bmImg;
 
-    public Bitmap loadBitmap(String urlStr) {
+    private class back extends AsyncTask<String, Integer,Bitmap>{
+
+        @Override
+        protected Bitmap doInBackground(String... urls) {
+            // TODO Auto-generated method stub
+            try{
+                URL myFileUrl = new URL(urls[0]);
+                HttpURLConnection conn = (HttpURLConnection)myFileUrl.openConnection();
+                conn.setDoInput(true);
+                conn.connect();
+
+                InputStream is = conn.getInputStream();
+
+                //이미지 용량을 줄이기
+//                BitmapFactory.Options options = new BitmapFactory.Options();
+//                options.inSampleSize = 2; // (1/2)로 줄임
+
+                bmImg = BitmapFactory.decodeStream(is);
+
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+            return bmImg;
+        }
+
+    }
+
+    /*public Bitmap loadBitmap(String urlStr) {
         Bitmap bitmap = null;
         AssetManager mngr = getResources().getAssets();
         try{
@@ -424,7 +462,7 @@ public class ResultActivity extends AppCompatActivity{
         }
 
         return bitmap;
-    }
+    }*/
 
     static float getdistance(int r, int g, int b, int cr, int cg, int cb){
         float distance;
@@ -438,10 +476,6 @@ public class ResultActivity extends AppCompatActivity{
             rgb = new int[]{(int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255)};
         }else {
             rgb = new int[]{Integer.parseInt(hexcolor.substring(0, 2), 16), Integer.parseInt(hexcolor.substring(2, 4), 16), Integer.parseInt(hexcolor.substring(4, 6), 16)};
-        }
-
-        for(int i=0;i<3;i++){
-            Toast.makeText(this, String.valueOf(rgb[i]), Toast.LENGTH_LONG).show();
         }
     }
 }

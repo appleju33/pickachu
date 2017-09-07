@@ -7,30 +7,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_weight="0.7">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="22dp"
-            android:gravity="center"
-            android:text="선택한 키워드 : "/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="22dp"
-            android:gravity="center"
-            android:id="@+id/selectedcolor"
-            android:text="null"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="22dp"
-            android:gravity="center"
-            android:id="@+id/selectedmood"
-            android:text="null"/>
-
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src = "@drawable/btnsub1"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/select_light"/>
     </LinearLayout>
     <ListView
         android:layout_width="match_parent"

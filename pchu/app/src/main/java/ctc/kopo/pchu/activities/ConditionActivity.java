@@ -360,11 +360,13 @@ public class ConditionActivity extends AppCompatActivity {
         ImageButton next = (ImageButton) findViewById(R.id.next) ;
         if(index1 && index2 && index3 && index4 && index5 && index6 && index7 && index8 && index9 && index10 && index11 && index12){
             //next.setBackgroundColor(Color.parseColor("#8C8C8C"));
-            next.setImageResource(R.drawable.condition2_un);
+            //next.setImageResource(R.drawable.condition2_un);
+            next.setBackgroundColor(Color.parseColor("#bfbfbf"));
             next.setEnabled(false);
         }else{
             //next.setBackgroundColor(Color.parseColor("#A90008"));
-            next.setImageResource(R.drawable.condition2);
+            //next.setImageResource(R.drawable.condition2);
+            next.setBackgroundColor(Color.parseColor("#A90208"));
             next.setEnabled(true);
         }
     }
