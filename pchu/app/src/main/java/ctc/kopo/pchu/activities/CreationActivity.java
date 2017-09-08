@@ -49,7 +49,7 @@ public class CreationActivity extends AppCompatActivity{
         String skinName = intent.getExtras().getString("skinname");
         String lamp = intent.getExtras().getString("lamp");
         //intent.putExtra("whitebalance",whitebalance);
-        Toast.makeText(this, whitebalance, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, whitebalance, Toast.LENGTH_LONG).show();
 
         int corlampR =0;
         int corlampG =0;

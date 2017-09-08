@@ -312,6 +312,8 @@
             android:id="@+id/next"
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:background="#A90208"
             android:src="@drawable/pickk"
             android:layout_alignParentBottom="true"

@@ -164,7 +164,13 @@ public class WhitePickerActivity extends AppCompatActivity implements CameraColo
 
         AlertDialog.Builder builder = new AlertDialog.Builder(WhitePickerActivity.this);
         //builder.setTitle("조명 선택");
-        builder.setCancelable(false);
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                finish();
+            }
+        });
+
 
         builder.setAdapter(adapter,new DialogInterface.OnClickListener(){
             @Override

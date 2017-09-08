@@ -51,13 +51,14 @@ public class AnalysisActivity extends AppCompatActivity{
 
         //설명서로 가는 버튼
         ImageButton info = (ImageButton) mCustomView.findViewById(R.id.settingsBtn);
-        info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PopupActivity.class);
-                startActivity(intent);
-            }
-        });
+        info.setVisibility(View.INVISIBLE);
+//        info.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), PopupActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         String skinrgb = null;
         Intent intent = getIntent();

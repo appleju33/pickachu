@@ -1,7 +1,8 @@
 package ctc.kopo.pchu.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,19 +48,26 @@ public class ResultListViewAdapter extends BaseAdapter {
         }
 
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
-        ImageView iconImageView = (ImageView) convertView.findViewById(R.id.imageView1) ;
-        TextView titleTextView = (TextView) convertView.findViewById(R.id.textView1) ;
+        ImageView iconImageView = (ImageView) convertView.findViewById(R.id.itemimg) ;
+        TextView titleTextView = (TextView) convertView.findViewById(R.id.brand) ;
+        TextView prodTextView = (TextView) convertView.findViewById(R.id.product) ;
+        TextView descTextView = (TextView) convertView.findViewById(R.id.detail) ;
         TextView priceTextView = (TextView) convertView.findViewById(R.id.price) ;
-        TextView descTextView = (TextView) convertView.findViewById(R.id.textView2) ;
+        View barView = (View) convertView.findViewById(R.id.hexbar) ;
+        View cirView = (View) convertView.findViewById(R.id.hexcircle) ;
+
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         ResultItem listViewItem = listViewItemList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
-        iconImageView.setImageDrawable(listViewItem.getIcon());
+        iconImageView.setImageBitmap(listViewItem.getIcon());
         titleTextView.setText(listViewItem.getTitle());
+        prodTextView.setText(listViewItem.getProduct());
         descTextView.setText(listViewItem.getDesc());
         priceTextView.setText(listViewItem.getPrice());
+        barView.setBackgroundColor(Color.parseColor(listViewItem.getBar()));
+        cirView.setBackgroundColor(Color.parseColor(listViewItem.getBar()));
 
         return convertView;
     }
@@ -77,13 +85,15 @@ public class ResultListViewAdapter extends BaseAdapter {
     }
 
     // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
-    public void addItem(Drawable icon, String title, String desc, String price) {
+    public void addItem(Bitmap icon, String title,String product, String desc, String price,String bar) {
         ResultItem item = new ResultItem();
 
         item.setIcon(icon);
         item.setTitle(title);
+        item.setProduct(product);
         item.setDesc(desc);
         item.setPrice(price);
+        item.setBar(bar);
 
         listViewItemList.add(item);
     }

@@ -1,7 +1,6 @@
 package ctc.kopo.pchu.activities;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,13 +12,11 @@ import android.os.StrictMode;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.ImageButton;
+import android.widget.ListView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,15 +26,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 import ctc.kopo.pchu.R;
+import ctc.kopo.pchu.adapter.ResultListViewAdapter;
+import ctc.kopo.pchu.fragment.SelectedCustomDialog;
 import ctc.kopo.pchu.views.JsonItem;
 
 /**
@@ -46,40 +43,24 @@ import ctc.kopo.pchu.views.JsonItem;
 
 public class ResultActivity extends AppCompatActivity{
 
-    //String color = null;
     int theme  = 0;
     String colorType = null;
-//    String moodType = null;
     int skin = 0;
     double distance = 0;
-
-    Button tv_color1;
-    Button tv_color2;
-    Button tv_color3;
-    Button tv_color4;
-    TextView colortxt;
-    TextView moodtxt;
-    ImageView re_iv;
-    ImageView re_iv2;
-    ImageView re_iv3;
-
-    String setid[] = {"","",""};
-    String setr[] = {"","",""};
-    String setg[] = {"","",""};
-    String setb[] = {"","",""};
-
     int rgb[] = new int[3];
-    String condrgb[] = new String[3];
+
+    ResultListViewAdapter adapter;
+    ListView listView;
 
     String[][] recommColor = {{"#d29696","#fa96a5","#ffd2e6","#fa3c2d","#ff6496","#dc8c96","#963c64","#c8000a","#f50087"},
-                            {"#dc968c","#fa8282","#fabebe","#f54b2d","#f0648c","#dca0a0","#911e37","#d71919","#cd5f69"},
-                            {"#d7967d","#fa6e6e","#f5beaa","#ff4619","#f05064","#dc8278","#a41e23","#e63201","#fa695a"},
-                            {"#d2a0a0","#eb96a5","#ffbed2","#f55537","#f06ea0","#dc7882","#a34869","#ab0026","#cd6e96"},
-                            {"#dca096","#eb8282","#faaaaa","#eb5537","#e65f82","#dc8c8c","#a54150","#c31928","#e1a091"},
-                            {"#d7a087","#eb6e6e","#f5aa96","#f57d5f","#eb646e","#dc786e","#b44b4b","#be2301","#fa8c82"},
-                            {"#d2afaf","#dc96a5","#ffaabe","#eb4632","#d22869","#dc646e","#550f41","#a0003c","#fab4dc"},
-                            {"#dcb4aa","#dc8282","#fa9696","#ff733c","#e14173","#dc7878","#821e32","#a51928","#b43232"},
-                            {"#d7aa91","#dc6e6e","#f59682","#ff6423","#f04169","#dc6e64","#6e1428","#a51401","#aa6964"}};
+            {"#dc968c","#fa8282","#fabebe","#f54b2d","#f0648c","#dca0a0","#911e37","#d71919","#cd5f69"},
+            {"#d7967d","#fa6e6e","#f5beaa","#ff4619","#f05064","#dc8278","#a41e23","#e63201","#fa695a"},
+            {"#d2a0a0","#eb96a5","#ffbed2","#f55537","#f06ea0","#dc7882","#a34869","#ab0026","#cd6e96"},
+            {"#dca096","#eb8282","#faaaaa","#eb5537","#e65f82","#dc8c8c","#a54150","#c31928","#e1a091"},
+            {"#d7a087","#eb6e6e","#f5aa96","#f57d5f","#eb646e","#dc786e","#b44b4b","#be2301","#fa8c82"},
+            {"#d2afaf","#dc96a5","#ffaabe","#eb4632","#d22869","#dc646e","#550f41","#a0003c","#fab4dc"},
+            {"#dcb4aa","#dc8282","#fa9696","#ff733c","#e14173","#dc7878","#821e32","#a51928","#b43232"},
+            {"#d7aa91","#dc6e6e","#f59682","#ff6423","#f04169","#dc6e64","#6e1428","#a51401","#aa6964"}};
 
     private int cnt = 0;
 
@@ -87,7 +68,7 @@ public class ResultActivity extends AppCompatActivity{
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.result2);
+        setContentView(R.layout.result);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setElevation(0); // 그림자 없애기
@@ -103,39 +84,26 @@ public class ResultActivity extends AppCompatActivity{
 
         // 액션바에 백그라운드 색상을 아래처럼 입힐 수 있습니다.
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.argb(255, 255, 255, 255)));
-        
+
+        ImageButton info = (ImageButton) mCustomView.findViewById(R.id.settingsBtn);
+        info.setVisibility(View.INVISIBLE);
+
         //intent 데이터 받아오기
         Intent intent = getIntent();
         //color= intent.getExtras().getString("color");
-        theme= Integer.parseInt(intent.getExtras().getString("mood").replace("theme",""))-1;
-        skin = Integer.parseInt(intent.getExtras().getString("RGB").replace("skin",""))-1;
+        theme = Integer.parseInt(intent.getExtras().getString("mood").replace("theme", "")) - 1;
+        skin = Integer.parseInt(intent.getExtras().getString("RGB").replace("skin", "")) - 1;
 
 //        colorType = changeColor(color);
 //        moodType = changeMood(mood);
-        if(theme==9){
+        if (theme == 9) {
             colorType = "#ffffff";
-        }else {
+        } else {
             colorType = recommColor[skin][theme];
         }
         //Toast.makeText(this, colorType, Toast.LENGTH_LONG).show();
 
         changeColor(colorType);
-
-
-        colortxt = (TextView) findViewById(R.id.selectedcolor);
-        moodtxt = (TextView) findViewById(R.id.selectedmood);
-        tv_color1 = (Button) findViewById(R.id.tv_color1);
-        tv_color2 = (Button) findViewById(R.id.tv_color2);
-        tv_color3 = (Button) findViewById(R.id.tv_color3);
-        tv_color4 = (Button) findViewById(R.id.tv_color4);
-        re_iv = (ImageView) findViewById(R.id.result_iv);
-        re_iv2 = (ImageView) findViewById(R.id.result_iv2);
-        re_iv3 = (ImageView) findViewById(R.id.result_iv3);
-
-        //Toast.makeText(this, skinrgb, Toast.LENGTH_LONG).show();
-
-//        colortxt.setText(color+"");
-//        moodtxt.setText(mood+"");
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
                 .permitAll().build();
@@ -146,6 +114,7 @@ public class ResultActivity extends AppCompatActivity{
 
         getData("http://iamhpd7.cafe24.com/PickChu/productPic.php");
 
+/*
 //        피드백 선택 부분, 잠시 보류
         tv_color1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -271,9 +240,22 @@ public class ResultActivity extends AppCompatActivity{
             }
         });
     }
+*/
+    }
+
+    ProgressDialog pDialog;
 
     public void getData(String url) {
         class GetDataJSON extends AsyncTask<String, Integer, String> {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                pDialog  = new ProgressDialog(ResultActivity.this);
+                pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                pDialog.setMessage("로딩중입니다..");
+                pDialog.show();
+            }
+
             @Override
             protected String doInBackground(String... urls) {
                 StringBuilder jsonHtml = new StringBuilder();
@@ -341,8 +323,8 @@ public class ResultActivity extends AppCompatActivity{
                         rgb[0],rgb[1],rgb[2]);
                 jsonItem.setDistance(distance);
 
-                if(Pitem.size() > 8) {
-                    for (int j = 0; j < 9; j++) {
+                if(Pitem.size() > 5) {
+                    for (int j = 0; j < 6; j++) {
                         if(Pitem.get(j).getDistance() > distance){
                             Pitem.remove(j);
                             Pitem.add(jsonItem);
@@ -361,20 +343,58 @@ public class ResultActivity extends AppCompatActivity{
                 }
             });
 
-            //Bitmap bitmap []= {loadBitmap(Pitem.get(0).getImg()+".jpg"), loadBitmap(Pitem.get(1).getImg()+".jpg"), loadBitmap(Pitem.get(2).getImg()+".jpg")};
 
-            //Toast.makeText(this, imgUrl + Pitem.get(0).getImg() + ".jpg", Toast.LENGTH_LONG).show();
-            Bitmap bitmap[] = {new back().execute(imgUrl + Pitem.get(0).getImg() + ".jpg").get(), new back().execute(imgUrl + Pitem.get(1).getImg() + ".jpg").get(), new back().execute(imgUrl + Pitem.get(2).getImg() + ".jpg").get()};
-            re_iv.setImageBitmap(bitmap[0]);
-            re_iv2.setImageBitmap(bitmap[1]);
-            re_iv3.setImageBitmap(bitmap[2]);
+            adapter = new ResultListViewAdapter();
+            listView = (ListView) findViewById(R.id.resultlistview);
+            listView.setAdapter(adapter);
 
-            tv_color1.setText("name: "+Pitem.get(0).getItemname()+"\n price: "+Pitem.get(0).getPrice()+"\n img: "+Pitem.get(0).getImg()+"\n hex: "+Pitem.get(0).getHex()+"\n dis: "+Pitem.get(0).getDistance());
-            tv_color1.setBackgroundColor(Color.rgb(Integer.parseInt(Pitem.get(0).getColorR()),Integer.parseInt(Pitem.get(0).getColorG()),Integer.parseInt(Pitem.get(0).getColorB())));
-            tv_color2.setText("name: "+Pitem.get(1).getItemname()+"\n price: "+Pitem.get(1).getPrice()+"\n img: "+Pitem.get(1).getImg()+"\n hex: "+Pitem.get(1).getHex()+"\n dis: "+Pitem.get(1).getDistance());
-            tv_color2.setBackgroundColor(Color.rgb(Integer.parseInt(Pitem.get(1).getColorR()),Integer.parseInt(Pitem.get(1).getColorG()),Integer.parseInt(Pitem.get(1).getColorB())));
-            tv_color3.setText("name: "+Pitem.get(2).getItemname()+"\n price: "+Pitem.get(2).getPrice()+"\n img: "+Pitem.get(2).getImg()+"\n hex: "+Pitem.get(2).getHex()+"\n dis: "+Pitem.get(2).getDistance());
-            tv_color3.setBackgroundColor(Color.rgb(Integer.parseInt(Pitem.get(2).getColorR()),Integer.parseInt(Pitem.get(2).getColorG()),Integer.parseInt(Pitem.get(2).getColorB())));
+            for(int i=0;i<Pitem.size();i++){
+                try{
+                    Bitmap bitmap = new back().execute(imgUrl + Pitem.get(i).getImg()+".jpg").get();
+                    adapter.addItem(bitmap, Pitem.get(i).getBrand(), Pitem.get(i).getItemname(), Pitem.get(i).getColorname(),Pitem.get(i).getPrice(),Pitem.get(i).getHex());
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+            pDialog.dismiss();
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    //Intent intent = new Intent(getApplicationContext(),ResultActivity.class); //팝업
+                    SelectedCustomDialog dialog = new SelectedCustomDialog();
+                    //FragmentManager fm = getSupportFragmentManager();
+
+                    Bundle bundle = new Bundle();
+
+                    bundle.putString("img",Pitem.get(position).getImg());
+                    bundle.putString("brand",Pitem.get(position).getBrand());
+                    bundle.putString("product",Pitem.get(position).getItemname());
+                    bundle.putString("detail",Pitem.get(position).getColorname());
+                    bundle.putString("price",Pitem.get(position).getPrice());
+                    bundle.putString("hex",Pitem.get(position).getHex());
+                    bundle.putString("rgb",Pitem.get(position).getColorR()+","+Pitem.get(position).getColorG()+","+Pitem.get(position).getColorB());
+                    bundle.putString("skinType",String.valueOf(skin+1));
+                    bundle.putString("themeChoice",String.valueOf(theme+1));
+
+                    dialog.setArguments(bundle);
+                    dialog.show(getSupportFragmentManager(),"tag");
+                }
+            });
+
+//
+//            Bitmap bitmap[] = {new back().execute(imgUrl + Pitem.get(0).getImg() + ".jpg").get(), new back().execute(imgUrl + Pitem.get(1).getImg() + ".jpg").get(), new back().execute(imgUrl + Pitem.get(2).getImg() + ".jpg").get()};
+//            re_iv.setImageBitmap(bitmap[0]);
+//            re_iv2.setImageBitmap(bitmap[1]);
+//            re_iv3.setImageBitmap(bitmap[2]);
+//
+//            tv_color1.setText("name: "+Pitem.get(0).getItemname()+"\n price: "+Pitem.get(0).getPrice()+"\n img: "+Pitem.get(0).getImg()+"\n hex: "+Pitem.get(0).getHex()+"\n dis: "+Pitem.get(0).getDistance());
+//            tv_color1.setBackgroundColor(Color.rgb(Integer.parseInt(Pitem.get(0).getColorR()),Integer.parseInt(Pitem.get(0).getColorG()),Integer.parseInt(Pitem.get(0).getColorB())));
+//            tv_color2.setText("name: "+Pitem.get(1).getItemname()+"\n price: "+Pitem.get(1).getPrice()+"\n img: "+Pitem.get(1).getImg()+"\n hex: "+Pitem.get(1).getHex()+"\n dis: "+Pitem.get(1).getDistance());
+//            tv_color2.setBackgroundColor(Color.rgb(Integer.parseInt(Pitem.get(1).getColorR()),Integer.parseInt(Pitem.get(1).getColorG()),Integer.parseInt(Pitem.get(1).getColorB())));
+//            tv_color3.setText("name: "+Pitem.get(2).getItemname()+"\n price: "+Pitem.get(2).getPrice()+"\n img: "+Pitem.get(2).getImg()+"\n hex: "+Pitem.get(2).getHex()+"\n dis: "+Pitem.get(2).getDistance());
+//            tv_color3.setBackgroundColor(Color.rgb(Integer.parseInt(Pitem.get(2).getColorR()),Integer.parseInt(Pitem.get(2).getColorG()),Integer.parseInt(Pitem.get(2).getColorB())));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -382,6 +402,7 @@ public class ResultActivity extends AppCompatActivity{
             Log.d("에러발생",alle.getMessage());
         }
     }
+/*
 
     class CustomTask extends AsyncTask<String, Void, String> {
         String sendMsg, receiveMsg;
@@ -419,6 +440,7 @@ public class ResultActivity extends AppCompatActivity{
             return receiveMsg;
         }
     }
+*/
 
     String imgUrl = "http://iamhpd7.cafe24.com/PickChu/img/";
     Bitmap bmImg;
@@ -437,8 +459,8 @@ public class ResultActivity extends AppCompatActivity{
                 InputStream is = conn.getInputStream();
 
                 //이미지 용량을 줄이기
-//                BitmapFactory.Options options = new BitmapFactory.Options();
-//                options.inSampleSize = 2; // (1/2)로 줄임
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inSampleSize = 2; // (1/2)로 줄임
 
                 bmImg = BitmapFactory.decodeStream(is);
 
@@ -449,20 +471,6 @@ public class ResultActivity extends AppCompatActivity{
         }
 
     }
-
-    /*public Bitmap loadBitmap(String urlStr) {
-        Bitmap bitmap = null;
-        AssetManager mngr = getResources().getAssets();
-        try{
-            InputStream is = mngr.open(urlStr);
-            bitmap = BitmapFactory.decodeStream(is);
-
-        }catch(Exception e){
-
-        }
-
-        return bitmap;
-    }*/
 
     static float getdistance(int r, int g, int b, int cr, int cg, int cb){
         float distance;

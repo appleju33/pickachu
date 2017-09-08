@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:background="#ffffff">
+        <TextView
+            android:id="@+id/brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="5dp"
+            android:text="brand"
+            android:textColor="#666666"
+            android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:layout_below="@+id/brand"
+            android:text="product"
+            android:textColor="#000000"
+            android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/product"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/hexcircle"
+            android:text="detail"
+            android:textColor="#000000"
+            android:textSize="22dp" />
+
+        <View
+            android:id="@+id/hexcircle"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="20dp"
+            android:layout_below="@+id/product"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="7dp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/detail"
+            android:layout_marginBottom="20dp"
+            android:layout_toStartOf="@+id/itemimg"
+            android:layout_marginRight="10dp"
+            android:gravity="right"
+            android:text="price"
+            android:textColor="#000000"
+            android:textSize="22dp" />
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/itemimg"
+            android:layout_toStartOf="@+id/hexbar"
+            android:scaleType="centerCrop" />
+        <View
+            android:layout_width="20dp"
+            android:layout_height="180dp"
+            android:id="@+id/hexbar"
+            android:layout_alignParentEnd="true"
+            android:background="#000000"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#bfbfbf"
+        android:layout_below="@+id/hexbar"/>
+    <ImageButton
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:id="@+id/youtubebtn"
+        android:background="@drawable/youtubebtn_un"
+        android:scaleType="fitCenter" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/btns"
+            android:layout_above="@id/youtubebtn"
+            android:orientation="horizontal">
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="30dp"
+                android:id="@+id/like"
+                android:src="@drawable/likebtn"
+                android:background="#ffffff"
+                android:scaleType="fitCenter"/>
+            <ImageButton
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/soso"
+                android:src="@drawable/sosobtn"
+                android:background="#ffffff"
+                android:scaleType="fitCenter"/>
+        </LinearLayout>
+    </RelativeLayout>
