@@ -114,6 +114,17 @@ public class ResultActivity extends AppCompatActivity{
 
         getData("http://iamhpd7.cafe24.com/PickChu/productPic.php");
 
+        ImageButton next = (ImageButton) findViewById(R.id.next);
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
 /*
 //        피드백 선택 부분, 잠시 보류
         tv_color1.setOnClickListener(new View.OnClickListener() {

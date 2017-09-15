@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import ctc.kopo.pchu.R;
 
@@ -95,7 +94,7 @@ public class ConditionActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         skinrgb= intent.getExtras().getString("RGB");
-        Toast.makeText(this, skinrgb, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, skinrgb, Toast.LENGTH_LONG).show();
 
         initImgButton();
 

@@ -50,8 +50,8 @@
             android:orientation="vertical"
             android:layout_alignParentBottom="true">
             <ImageView
-                android:layout_width="400dp"
-                android:layout_height="400dp"
+                android:layout_width="350dp"
+                android:layout_height="350dp"
                 android:src="@drawable/main"
                 android:id="@+id/mainimg"
                 android:layout_gravity="center"
@@ -60,6 +60,8 @@
                 android:id="@+id/menualbtn"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:layout_gravity="center"
                 android:background="#A90208"
                 android:scaleType="fitEnd"

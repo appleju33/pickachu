@@ -24,7 +24,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:background="#A90208"
-            android:src="@drawable/pickk"
+            android:src="@drawable/backtohome"
             android:layout_alignParentBottom="true"
             android:layout_margin="10dp"
             android:scaleType="fitEnd" />

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,11 +47,17 @@ public class SelectedCustomDialog extends DialogFragment {
     String skin;
     String theme;
 
+    int dialogWidth;
+    int dialogHeight;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.clickitempop, container);
+
+        dialogWidth = WindowManager.LayoutParams.MATCH_PARENT;
+        dialogHeight = WindowManager.LayoutParams.WRAP_CONTENT;
 
         img = getArguments().getString("img");
         brand = getArguments().getString("brand");
@@ -138,12 +145,11 @@ public class SelectedCustomDialog extends DialogFragment {
         if (getDialog() == null)
             return;
 
-        int dialogWidth = 1000; // specify a value here
-        int dialogHeight = 750; // specify a value here
+//        int dialogWidth = 1000; // specify a value here
+//        int dialogHeight = 800; // specify a value here
 
         getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
 
-        // ... other stuff you want to do in your onStart() method
     }
 
     class CustomTask extends AsyncTask<String, Void, String> {
