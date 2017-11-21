@@ -176,7 +176,7 @@ public class WhitePickerActivity extends AppCompatActivity implements CameraColo
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TODO Auto-generated method stub
-                Toast.makeText(WhitePickerActivity.this, items[which], Toast.LENGTH_SHORT).show();
+                //Toast.makeText(WhitePickerActivity.this, items[which], Toast.LENGTH_SHORT).show();
                 intent.putExtra("lamp",items[which]);
                 dialog.dismiss(); // 누르면 바로 닫히는 형태
             }
@@ -249,7 +249,7 @@ public class WhitePickerActivity extends AppCompatActivity implements CameraColo
             //ColorItem(mLastPickedColor)
             //rgb = ColorItem.makeHexString(mLastPickedColor);
             rgb = ColorItem.makeHexString(mLastPickedColor);
-            Toast.makeText(this, rgb, Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, rgb, Toast.LENGTH_LONG).show();
             intent.putExtra("whitebalance",rgb);
 
             AlertDialog.Builder alertdialog = new AlertDialog.Builder(this,R.style.AlertTheme);

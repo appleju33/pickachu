@@ -1,8 +1,10 @@
 package ctc.kopo.pchu.fragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -134,6 +136,14 @@ public class SelectedCustomDialog extends DialogFragment {
             }
         });
 
+        youtubeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://m.shopping.naver.com/search/all.nhn?query="+brand+" "+product+" "+detail+"&cat_id=&frm=NVSHATC"));
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
     @Override
@@ -208,8 +218,8 @@ public class SelectedCustomDialog extends DialogFragment {
                 InputStream is = conn.getInputStream();
 
                 //이미지 용량을 줄이기
-//                BitmapFactory.Options options = new BitmapFactory.Options();
-//                options.inSampleSize = 2; // (1/2)로 줄임
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inSampleSize = 2; // (1/2)로 줄임
 
                 bmImg = BitmapFactory.decodeStream(is);
 
